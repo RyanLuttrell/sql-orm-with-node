@@ -1,0 +1,25 @@
+{
+  "name": "sql-orm-with-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RyanLuttrell/sql-orm-with-node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RyanLuttrell/sql-orm-with-node/issues"
+  },
+  "homepage": "https://github.com/RyanLuttrell/sql-orm-with-node#readme",
+  "dependencies": {
+    "sequelize": "^5.22.3",
+    "sqlite3": "^4.2.0"
+  }
+}
