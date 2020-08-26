@@ -51,7 +51,11 @@ module.exports = (sequelize) => {
             allowNull: false,
             defaultValue: false
         }
-    }, {sequelize});
+    }, 
+    {
+        tableName: 'my_movies_table',
+        sequelize
+    });
 
     return Movie;
 }
