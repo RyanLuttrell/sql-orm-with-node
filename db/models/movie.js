@@ -53,7 +53,7 @@ module.exports = (sequelize) => {
         }
     }, 
     {
-        tableName: 'my_movies_table',
+        paranoid: true,
         sequelize
     });
 

@@ -1,5 +1,6 @@
 const db = require('./db');
 const {Movie, Person} = db.models;
+const { Op } = db.Sequelize;
 
 (async () => {
     await db.sequelize.sync({force: true});
@@ -26,14 +27,47 @@ const {Movie, Person} = db.models;
             }),
             Movie.create({
                 title: 'Lord of the Rings',
-                runtime: 150,
+                runtime: 120,
                 releaseDate: '2007-04-11',
+                isAvailableOnVHS: true
             }),
         ]);
         const person = await Person.create({
             firstName: 'Ryan',
             lastName: 'Luttrell'
         })
+        const movie3 = await Movie.build({
+            title: 'Toy Story 3',
+            runtime: 103,
+            releaseDate: '2010-06-18',
+            isAvailableOnVHS: false
+        })
+        await movie3.save();
+        // const findAll = await Movie.findAll({
+        //     attributes: ['id', 'title'],
+        //     where: {
+        //         releaseDate: {
+        //             [Op.gte]: '2003-01-01'
+        //         },
+        //         runtime: {
+        //             [Op.gt]: 112
+        //         }
+        //     },
+        //     order: [['id', 'DESC']]
+        // });
+        const toyStory3 = await Movie.findByPk(5)
+        const toyStory = await Movie.findByPk(1)
+        // toyStory3.isAvailableOnVHS = true;
+        // await toyStory3.save();
+        // await toyStory3.update({
+        //     title: 'Trying Really Hard',
+        //     isAvailableOnVHS: true
+        // }, {fields: ['title', 'isAvailableOnVHS']});
+        await toyStory3.destroy();
+        await toyStory.destroy();
+
+        const movies = await Movie.findAll();
+        console.log(movies.map(movie => movie.toJSON()));
     } catch (error) {
         if (error.name === 'SequelizeValidationError') {
             const errors = error.errors.map(err => err.message);
